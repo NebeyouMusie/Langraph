@@ -3,7 +3,7 @@
 
 ## Description
  - One of the central concepts of LangGraph is state. Each graph execution creates a state that is passed between nodes in the graph as they execute, and each node updates this internal state with its return value after it executes. The way that the graph updates its internal state is defined by either the type of graph chosen or a custom function.
- - In this project I have used a simple example that Langraph provided.It's an agent that can search the web using [Tavily Search API](https://tavily.com/).
+ - In this project I have used a simple example that Langraph provided. It's an agent that can search the web using [Tavily Search API](https://tavily.com/).
 
 ## Step-by-step Breakdown
 1. **Initialize the model and tools.**
