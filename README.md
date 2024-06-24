@@ -58,7 +58,10 @@
     - `source venv/bin/activate` or `venv/bin/activate` for windows
  4. Navigate to the project's directory `cd ./Langraph` using your terminal
  5. Install Libraries: `pip install -r requirements.txt`
- 6. run `python langraph_intro.py`
+ 7. setup your TAVILY and GROQ API Key in your teminal
+ - `export OPENAI_API_KEY=sk-...`
+ - `export TAVILY_API_KEY=tvly-...`
+ 8. run `python langraph_intro.py`
 
 ## Collaboration
 - Collaborations are welcomed ❤️
