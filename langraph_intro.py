@@ -16,7 +16,7 @@ load_dotenv()
 tools = [TavilySearchResults(max_results=1)]
 tool_node = ToolNode(tools)
 
-model = ChatGroq(temperature=0.5, api_key=os.getenv('GROQ_API_KEY'), model="mixtral-8x7b-32768")
+model = ChatGroq(temperature=0.5, api_key=os.getenv('GROQ_API_KEY'), model="mixtral-8x7b-32768").bind_tools(tools)
 
 # print(model.invoke('hello'))
 
