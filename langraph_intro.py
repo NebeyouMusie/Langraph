@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Define the tools for the agent to use
-tools = [TavilySearchResults(max_results=1, api_wrapper=os.getenv('TAVILY_API_KEY'))]
+tools = [TavilySearchResults(max_results=1)]
 tool_node = ToolNode(tools)
 
 model = ChatGroq(temperature=0.5, api_key=os.getenv('GROQ_API_KEY'), model="mixtral-8x7b-32768")
@@ -57,3 +57,24 @@ workflow.add_conditional_edges(
     # Next, we pass in the function that will determine which node is called next.
     should_continue,
 )
+
+# We now add a normal edge from 'tools' to 'agent'.
+# This means that after 'tools' is called, 'agent' node is called next.
+workflow.add_edge("tools", "agent")
+
+# Initialize memory to persist stte between graph runs
+checkpointer = MemorySaver()
+
+# Finally, we compile it!
+# This compiles into a Langchain Runnable,
+# meaning you can us it as you would any other runnable
+# Note that we're (optionally) passing the memory when compiling the graph
+app = workflow.compile(checkpointer=checkpointer)
+
+# Use Runnable
+final_state = app.invoke(
+    {"messages": [HumanMessage(content='What is the weather in sf')]},
+    config={"configurable": {"thread_id": 42}}
+)
+
+print(final_state["messages"][-1].content)
