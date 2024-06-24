@@ -33,13 +33,13 @@
  - We can also optionally pass checkpointer object for persisting state between graph runs, and enabling memory, human-in-the-loop workflows, time travel and more. In our case we use `MemorySaver` - a simple in-memory checkpointer
 
 6. **Execute the graph.**
- 1. LangGraph adds the input message to the internal state, then passes the state to the entrypoint node, "agent".
- 2. The "agent" node executes, invoking the chat model.
- 3. The chat model returns an AIMessage. LangGraph adds this to the state.
- 4. Graph cycles the following steps until there are no more tool_calls on AIMessage:
+ - a. LangGraph adds the input message to the internal state, then passes the state to the entrypoint node, "agent".
+ - b. The "agent" node executes, invoking the chat model.
+ - c. The chat model returns an AIMessage. LangGraph adds this to the state.
+ - d. Graph cycles the following steps until there are no more tool_calls on AIMessage:
   - If AIMessage has tool_calls, "tools" node executes
   - The "agent" node executes again and returns AIMessage
- 5. Execution progresses to the special END value and outputs the final state. And as a result, we get a list of all our chat messages as output.
+ . Execution progresses to the special END value and outputs the final state. And as a result, we get a list of all our chat messages as output.
 
 ## Libraries Used
  - langchain-community==0.2.5
