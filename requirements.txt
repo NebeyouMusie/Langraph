@@ -1,0 +1,5 @@
+langchain-community==0.2.5
+langchain-core==0.2.9
+langchain-groq==0.1.5
+langgraph==0.1.1
+python-dotenv==1.0.1
